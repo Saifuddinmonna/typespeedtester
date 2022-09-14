@@ -46,6 +46,7 @@ const typeController = (e) => {
     display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
   } else {
     display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
+    
   }
 
   // check if given question text is equal to user typed text
@@ -59,6 +60,7 @@ const validate = (key) => {
     return true;
   }
   return false;
+  console.log(validate,'validate');
 };
 
 // FINISHED TYPING
@@ -97,7 +99,7 @@ const gameOver = () => {
 
   // restart everything
   startTime = null;
-  errorCount = 0;
+  errorCount = ${test.errorCount};
   userText = "";
   display.classList.add("inactive");
 };
@@ -143,7 +145,7 @@ const closeModal = () => {
 
   // Show typing time spent
   setInterval(() => {
-    const currentTime = new Date().getTime().toFixed(); 
+    const currentTime = new Date().getTime(); 
     const timeSpent = (currentTime - startTime) / (1000); 
 
 
