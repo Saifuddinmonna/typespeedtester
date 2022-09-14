@@ -106,7 +106,7 @@ const closeModal = () => {
     // If already started, do not start again
     if (startTime) return;
 
-    let count = 3;
+    let count = 0;
     countdownOverlay.style.display = "flex";
 
     const startCountdown = setInterval(() => {
@@ -120,7 +120,8 @@ const closeModal = () => {
         display.classList.remove("inactive");
         countdownOverlay.classList.add("d-none")
         clearInterval(startCountdown);
-        startTime =  new Date().getTime();
+        startTime = new Date().getTime();
+        const ttt =startTime.toFixed
       }
       count--;
     }, 1000);
@@ -134,11 +135,12 @@ const closeModal = () => {
 
   // Show typing time spent
   setInterval(() => {
-    const currentTime = new Date().getTime();
-    const timeSpent = (currentTime - startTime) / 1000;
+    const currentTime = new Date().getTime().toFixed(); 
+    const timeSpent = (currentTime - startTime) / (1000); 
 
 
-    document.getElementById("show-time").innerHTML = `${startTime ? timeSpent : 0} seconds`;
+    document.getElementById("show-time").innerHTML = `${
+		startTime.toFixed() ? timeSpent.toFixed() : 0} seconds`;
   }, 1000);
   
 
