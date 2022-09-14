@@ -69,20 +69,28 @@ const gameOver = () => {
   const finishTime = new Date().getTime();
   const timeTaken = (finishTime - startTime) / 1000;
 
+ 
+ 
   // show result modal
   resultModal.innerHTML = "";
   resultModal.classList.toggle("hidden");
+  
   modalBackground.classList.toggle("hidden");
+  
+  
+
   // clear user text
   display.innerHTML = "";
   // make it inactive
   display.classList.add("inactive");
   // show result
-  resultModal.innerHTML += `
-    <h1>Finished!</h1>
+  resultModal.innerHTML = `
+  <h1>Finished!</h1>
     <p>You took: <span class="bold">${timeTaken}</span> seconds</p>
     <p>You made <span class="bold red">${errorCount}</span> mistakes</p>
     <button onclick="closeModal()">Close</button>
+  
+    
   `;
 
   addHistory(questionText, timeTaken, errorCount);
@@ -99,7 +107,7 @@ const closeModal = () => {
   resultModal.classList.toggle("hidden");
 };
 
-
+// gameOver();
 // START Countdown
 // startBtn.addEventListener('click', function start()
   const start = () => {
@@ -139,8 +147,8 @@ const closeModal = () => {
     const timeSpent = (currentTime - startTime) / (1000); 
 
 
-    document.getElementById("show-time").innerHTML = `${
-		startTime.toFixed() ? timeSpent.toFixed() : 0} seconds`;
+    document.getElementById("show-time").innerHTML = `${(
+		startTime ? timeSpent: 0).toFixed()} seconds`;
   }, 1000);
   
 
