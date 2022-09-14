@@ -99,41 +99,46 @@ const closeModal = () => {
   resultModal.classList.toggle("hidden");
 };
 
-const start = () => {
-  // If already started, do not start again
-  if (startTime) return;
-
-  let count = 3;
-  countdownOverlay.style.display = "flex";
-
-  const startCountdown = setInterval(() => {
-    countdownOverlay.innerHTML = '<h1>${count}</h1>';
-
-    // finished timer
-    if (count == 0) {
-      // -------------- START TYPING -----------------
-      document.addEventListener("keydown", typeController);
-      countdownOverlay.style.display = "flex";
-      display.classList.remove("inactive");
-
-      clearInterval(startCountdown);
-      startTime = new Date().getTime();
-    }
-    count--;
-  }, 1000);
-};
 
 // START Countdown
-startBtn.addEventListener("click", start);
+// startBtn.addEventListener('click', function start()
+  const start = () => {
+    // If already started, do not start again
+    if (startTime) return;
 
-// If history exists, show it
-displayHistory();
+    let count = 3;
+    countdownOverlay.style.display = "flex";
 
-// Show typing time spent
-setInterval(() => {
-  const currentTime = new Date().getTime();
-  const timeSpent = (currentTime - startTime) / 1000;
+    const startCountdown = setInterval(() => {
+      countdownOverlay.innerHTML = `<h1 class="display">${count}</h1>`;
+
+      // finished timer
+      if (count == 0) {
+        // -------------- START TYPING -----------------
+        document.addEventListener("keydown", typeController);
+        // countdownOverlay.style.display = "flex";
+        display.classList.remove("inactive");
+        countdownOverlay.classList.add("d-none")
+        clearInterval(startCountdown);
+        startTime =  new Date().getTime();
+      }
+      count--;
+    }, 1000);
+  };
 
 
-  document.getElementById("show-time").innerHTML = `${startTime ? timeSpent : 0} seconds`;
-}, 1000);
+
+
+  // If history exists, show it
+  displayHistory();
+
+  // Show typing time spent
+  setInterval(() => {
+    const currentTime = new Date().getTime();
+    const timeSpent = (currentTime - startTime) / 1000;
+
+
+    document.getElementById("show-time").innerHTML = `${startTime ? timeSpent : 0} seconds`;
+  }, 1000);
+  
+

@@ -60,6 +60,7 @@ body {
   font-size: 3rem;
   color: white;
   display: none;
+  ;
 }
 #result {
   position: fixed;
