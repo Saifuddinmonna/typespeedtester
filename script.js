@@ -46,7 +46,7 @@ const typeController = (e) => {
     display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
   } else {
     display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
-    
+    errorCount++;
   }
 
   // check if given question text is equal to user typed text
@@ -65,7 +65,7 @@ const validate = (key) => {
 
 // FINISHED TYPING
 const gameOver = () => {
-  document.removeEventListener("keydown", typeController);
+  document.removeEventListener("keyup", typeController);
   // the current time is the finish time
   // so total time taken is current time - start time
   const finishTime = new Date().getTime();
@@ -99,7 +99,7 @@ const gameOver = () => {
 
   // restart everything
   startTime = null;
-  errorCount = ${test.errorCount};
+  errorCount = `${errorCount}`;
   userText = "";
   display.classList.add("inactive");
 };
