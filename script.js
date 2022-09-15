@@ -13,80 +13,80 @@ let questionText = "";
 
 // Load and display question
 fetch("./texts.json")
-  .then((res) => res.json())
-  .then((data) => {
-    questionText = data[Math.floor(Math.random() * data.length)];
-    question.innerHTML = questionText;
-  });
+	.then((res) => res.json())
+	.then((data) => {
+		questionText = data[Math.floor(Math.random() * data.length)];
+		question.innerHTML = questionText;
+	});
 
 // checks the user typed character and displays accordingly
 const typeController = (e) => {
-  const newLetter = e.key;
+	const newLetter = e.key;
 
-  // Handle backspace press
-  if (newLetter == "Backspace") {
-    userText = userText.slice(0, userText.length - 1);
-    return display.removeChild(display.lastChild);
-  }
+	// Handle backspace press
+	if (newLetter == "Backspace") {
+		userText = userText.slice(0, userText.length - 1);
+		return display.removeChild(display.lastChild);
+	}
 
-  // these are the valid character we are allowing to type
-  const validLetters =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890!@#$%^&*()_+-={}[]'\".,?";
+	// these are the valid character we are allowing to type
+	const validLetters =
+		"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890!@#$%^&*()_+-={}[]'\".,?";
 
-  // if it is not a valid character like Control/Alt then skip displaying anything
-  if (!validLetters.includes(newLetter)) {
-    return;
-  }
+	// if it is not a valid character like Control/Alt then skip displaying anything
+	if (!validLetters.includes(newLetter)) {
+		return;
+	}
 
-  userText += newLetter;
+	userText += newLetter;
 
-  const newLetterCorrect = validate(newLetter);
+	const newLetterCorrect = validate(newLetter);
 
-  if (newLetterCorrect) {
-    display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
-  } else {
-    display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
-    errorCount++;
-  }
+	if (newLetterCorrect) {
+		display.innerHTML += `<span class="green">${
+			newLetter === " " ? "▪" : newLetter
+		}</span>`;
+	} else {
+		display.innerHTML += `<span class="red">${
+			newLetter === " " ? "▪" : newLetter
+		}</span>`;
+		errorCount++;
+	}
 
-  // check if given question text is equal to user typed text
-  if (questionText === userText) {
-    gameOver();
-  }
+	// check if given question text is equal to user typed text
+	if (questionText === userText) {
+		gameOver();
+	}
 };
 
 const validate = (key) => {
-  if (key === questionText[userText.length - 1]) {
-    return true;
-  }
-  return false;
-  console.log(validate,'validate');
+	if (key === questionText[userText.length - 1]) {
+		return true;
+	}
+	return false;
+	
 };
 
 // FINISHED TYPING
 const gameOver = () => {
-  document.removeEventListener("keyup", typeController);
-  // the current time is the finish time
-  // so total time taken is current time - start time
-  const finishTime = new Date().getTime();
-  const timeTaken = (finishTime - startTime) / 1000;
+	document.removeEventListener("keydown", typeController);
+	// the current time is the finish time
+	// so total time taken is current time - start time
+	const finishTime = new Date().getTime();
+	const timeTaken = (finishTime - startTime) / 1000;
 
- 
- 
-  // show result modal
-  resultModal.innerHTML = "";
-  resultModal.classList.toggle("hidden");
-  
-  modalBackground.classList.toggle("hidden");
-  
-  
+	// show result modal
+	resultModal.innerHTML = "";
+	resultModal.classList.toggle("hidden");
 
-  // clear user text
-  display.innerHTML = "";
-  // make it inactive
-  display.classList.add("inactive");
-  // show result
-  resultModal.innerHTML = `
+	modalBackground.classList.toggle("hidden");
+
+	// clear user text
+	display.innerHTML = "";
+	// make it inactive
+	display.classList.add("inactive");
+	// show result
+	resultModal.innerHTML = `
   <h1>Finished!</h1>
     <p>You took: <span class="bold">${timeTaken}</span> seconds</p>
     <p>You made <span class="bold red">${errorCount}</span> mistakes</p>
@@ -95,62 +95,59 @@ const gameOver = () => {
     
   `;
 
-  addHistory(questionText, timeTaken, errorCount);
+	addHistory(questionText, timeTaken, errorCount);
 
-  // restart everything
-  startTime = null;
-  errorCount = `${errorCount}`;
-  userText = "";
-  display.classList.add("inactive");
+	// restart everything
+	startTime = null;
+	errorCount = `${errorCount}`;
+	userText = "";
+	display.classList.add("inactive");
 };
 
 const closeModal = () => {
-  modalBackground.classList.toggle("hidden");
-  resultModal.classList.toggle("hidden");
+	modalBackground.classList.toggle("hidden");
+	resultModal.classList.toggle("hidden");
 };
 
-// gameOver();
+
+const start = () => {
+	// If already started, do not start again
+	if (startTime) return;
+
+	let count = 3;
+	countdownOverlay.style.display = "flex";
+
+	const startCountdown = setInterval(() => {
+		countdownOverlay.innerHTML = `<h1 >${count}</h1>`;
+
+		// finished timer
+		if (count == 0) {
+			// -------------- START TYPING -----------------
+			document.addEventListener("keydown", typeController);
+			countdownOverlay.style.display = "flex";
+			display.classList.remove("inactive");
+			countdownOverlay.classList.add("d-none");
+			clearInterval(startCountdown);
+			startTime = new Date().getTime();
+			
+		}
+		count--;
+	}, 1000);
+};
+
 // START Countdown
-// startBtn.addEventListener('click', function start()
-  const start = () => {
-    // If already started, do not start again
-    if (startTime) return;
-
-    let count = 0;
-    countdownOverlay.style.display = "flex";
-
-    const startCountdown = setInterval(() => {
-      countdownOverlay.innerHTML = `<h1 class="display">${count}</h1>`;
-
-      // finished timer
-      if (count == 0) {
-        // -------------- START TYPING -----------------
-        document.addEventListener("keydown", typeController);
-        // countdownOverlay.style.display = "flex";
-        display.classList.remove("inactive");
-        countdownOverlay.classList.add("d-none")
-        clearInterval(startCountdown);
-        startTime = new Date().getTime();
-        const ttt =startTime.toFixed
-      }
-      count--;
-    }, 1000);
-  };
 
 
+// If history exists, show it
+displayHistory();
 
+// Show typing time spent
+setInterval(() => {
+	const currentTime = new Date().getTime();
+	const timeSpent = (currentTime - startTime) / 1000;
 
-  // If history exists, show it
-  displayHistory();
-
-  // Show typing time spent
-  setInterval(() => {
-    const currentTime = new Date().getTime(); 
-    const timeSpent = (currentTime - startTime) / (1000); 
-
-
-    document.getElementById("show-time").innerHTML = `${(
-		startTime ? timeSpent: 0).toFixed()} seconds`;
-  }, 1000);
-  
-
+	document.getElementById("show-time").innerHTML = `${(startTime
+		? timeSpent
+		: 0
+	).toFixed()} seconds`;
+}, 1000);

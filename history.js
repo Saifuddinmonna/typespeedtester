@@ -44,6 +44,7 @@ function displayHistory() {
   `;
 
 		histories.appendChild(newRow);
-	});
+  });
+  errorCount = "0";
 }
-displayHistory();
+
