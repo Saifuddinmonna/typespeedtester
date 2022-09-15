@@ -145,7 +145,7 @@ button {
 #histories {
   display: grid;
   grid-template-columns: repeat(1,1fr);
-  gap: 10px;
+  gap: 15px;
   justify-content: space-around;
 }
 
@@ -155,7 +155,7 @@ button {
   display: grid;
   grid-template-columns:repeat(3,auto);
   justify-content:center;
-  align-items: center;
+  align-items:baseline;
   /* padding: 50px;
 ;
   align-items: center;
@@ -170,7 +170,7 @@ button {
     rgba(255, 255, 255, 0.05) 99.85%
   );
   
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 #modal-background {
@@ -226,4 +226,4 @@ button {
   body{
     font-size: smaller;
   }
-}
+};
