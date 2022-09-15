@@ -8,22 +8,22 @@
   </head>
   <body>
         <div class="mother-div container">
-                <div>
-                        <a class="btn d- text-info position-absolute top- start-0 btn-outline-primary" href="index.html">TYPE SPEED</a>
+                <div class="container">
+                        <a class="btn d- text-info position-absolute top- start-25 btn-outline-primary" href="index.html">TYPE SPEED</a>
 		
                 </div>
                 <!-- header start here  -->
 
                          <header class="header-div container">
-                                 <h1 class="text-primary p-5 border rounded-3">Blog for the Basic Concepts of  Javascript</h1>
+                                 <h1 class="text-primary p-5 border rounded-3 text-capitalize fst-italic text-center">Blog for the Basic Concepts of  Javascript</h1>
                         </header>
                 <!-- header end here  -->
 
                 <!-- main div start here  -->
 
                          <main class="main-div">
-                                <div>
-                                        <h2>
+                                <div class="border rounded p-3 m-3">
+                                        <h2 class="m-3 text-primary text-capitalize fst-italic">
                                              Difference Between Local Storage, Session Storage?   
                                         </h2>
                                         <p>
@@ -35,6 +35,100 @@
                                         <p>
                                             localStorage and sessionStorage are perfect for persisting non-sensitive data needed within client scripts between pages (for example: preferences, scores in games). The data stored in localStorage and sessionStorage can easily be read or changed from within the client/browser so should not be relied upon for storage of sensitive or security-related data within applications.    
                                         </p>
+                                </div>
+                                <div class="border rounded p-3 m-3">
+                                        <h2></h2>
+                                </div>
+                                <div class="border rounded p-3 m-3">
+                                        <h2 class="m-3 text-primary text-capitalize fst-italic">What is the difference between global and local Scope in JavaScript?</h2>
+                                        <p>The scope of a variable is the region of your program in which it is defined. JavaScript variables have only two scopes.</p>
+                                        <p>
+                                                <span>
+                                                        Global Variables − 
+                                                </span>
+                                                A global variable has a global scope which means it can be defined anywhere in your JavaScript code.
+                                        </p>
+                                        <p>
+
+                                                <span>Local Variables − </span>
+                                                 A local variable will be visible only within a function where it is defined. Function parameters are always local to that function.
+                                        </p>
+                                        <p>
+                                                Within the body of a function, a local variable takes precedence over a global variable with the same name. If you declare a local variable or function parameter with the same name as a global variable, you effectively hide the global variable.
+                                        </p>
+                                       <p>
+
+                                         <span>Example</span>
+                                         Here’s how you can declare a global variable
+                                        
+                                       </p>
+
+                                </div>
+                                <div class="border rounded p-3 m-3">
+                                        <h2 class="m-3 text-primary text-capitalize fst-italic">
+                                                How does the Event Loop works in JavaScript?
+                                        </h2>
+                                        <p>
+
+                                                Event loop is an endless loop, which waits for tasks, executes them and then sleeps until it receives more tasks. The event loop executes tasks from the event queue only when the call stack is empty i.e. there is no ongoing task. The event loop allows us to use callbacks and promises
+                                        </p>
+                                        <p>
+                                                                                                What is an event loop explain in brief?
+                                                        Image result for how does javascript event loop work
+                                                        Event loop is an endless loop, which waits for tasks, executes them and then sleeps until it receives more tasks. The event loop executes tasks from the event queue only when the call stack is empty i.e. there is no ongoing task. The event loop allows us to use callbacks and promises.
+                                                                                                </p>
+                                                                                                <p>
+                                                                                                What is precedence in event loop in JavaScript?
+                                                        The event loop is actually composed of one or more event queues. In each queue, events are handled in a FIFO order. It's up to the browser to decide how many queues to have and what form of prioritisation to give them. There's no Javascript interface to individual event queues or to send events to a particular queue.   
+                                                                                                </p>
+                                                                                                <p>
+                                                                                                        <h5>What is precedence in event loop in JavaScript?
+                                                        The event loop is actually composed of one or more event queues. In each queue, events are handled in a FIFO order. It's up to the browser to decide how many queues to have and what form of prioritisation to give them. There's no Javascript interface to individual event queues or to send events to a particular queue.
+                                                        </h5>
+                                                                What is event loop in JavaScript interview questions?
+                                                        The event loop is a mechanism that allows JavaScript to perform non-blocking operations. When an asynchronous task is started, the event loop will start running. Once the task is completed, the event loop will again check for any other tasks that need to be performed ,
+
+
+                                                        </p>
+
+                                        
+                                </div>
+                                <div  class="border rounded p-3 m-3">
+
+                                        <h2 class="m-3 text-primary text-capitalize fst-italic">
+
+                                                when do we get undefined in javascript?
+                                        </h2>
+
+                                        <p>
+                                                A variable that has not been assigned a value is of type undefined . A method or statement also returns undefined if the variable that is being evaluated does not have an assigned value. A function returns undefined if a value was not returned .
+                                        </p>
+
+                                        <p>JavaScript also has the null value. In addition, it has the undefined value. And both null and undefined values represent empty values in JavaScript.</p>
+                                        <p>What is undefined
+                                                The undefined is a primitive type in JavaScript. So the undefined is a type. And the undefined type has exactly one value that is undefined.</p>
+                                        <p>JavaScript uses the undefined value in the following situations.</p>
+                                        <p>1) Accessing an uninitialized variable
+                                                When you declare a variable and don’t initialize it to a value, the variable will have a value of undefined. For example:
+
+                                                let counter;
+                                                console.log(counter); // undefined
+                                                Code language: JavaScript (javascript)
+                                                It’s a good practice to always initialize a variable whenever possible. In this example, you can initialize the counter variable to zero, like this:
+
+                                                let counter = 0;
+                                                console.log(counter); // 0
+</p>
+                                        <p>2) Accessing a non-existing property of an object
+                                                If you access a non-existing property of an object, you’ll get undefined. </p>
+                                        <p>3) Function parameters
+                                                When you call a function with a number of parameters, you often pass the same number of arguments. </p>
+                                        <p>4) Functions return a value
+                                                A function that doesn’t have a return statement implicitly returns undefined. </p>
+                                        <p>5) Accessing out-of-bounds array elements
+                                        When you access an array element that is out-of-bounds, you’ll get the undefined value. </p>
+
+                                                
                                 </div>
 
 
