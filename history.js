@@ -27,12 +27,13 @@ function addHistory(questionText, timeTaken, errorCount) {
 	localStorage.setItem("testHistory", JSON.stringify(previousTests));
 
 	displayHistory();
+	
 }
-
+histories.appendChild = "";
 function displayHistory() {
 	histories.innerHTML = "";
 	const previousTests = JSON.parse(localStorage.getItem("testHistory")) || [];
-
+		
 	previousTests.forEach((test) => {
 		const newRow = document.createElement("div");
 		newRow.classList.add("card");
@@ -46,4 +47,5 @@ function displayHistory() {
 		histories.appendChild(newRow);
 	});
 	errorCount = "0";
+	
 }
